@@ -58,21 +58,21 @@ describe('1 - Crie um endpoint para o cadastro de usuários', () => {
       });
   });
 
-  // it('Será validado que não é possível cadastrar usuário com o campo email inválido', async () => {
-  //   await frisby
-  //     .post(`${url}/users/`,
-  //       {
-  //         name: 'Erick Jacquin',
-  //         email: 'erickjaquin',
-  //         password: '12345678',
-  //       })
-  //     .expect('status', 400)
-  //     .then((response) => {
-  //       const { body } = response;
-  //       const result = JSON.parse(body);
-  //       expect(result.message).toBe('Invalid entries. Try again.');
-  //     });
-  // });
+  it('Será validado que não é possível cadastrar usuário com o campo email inválido', async () => {
+    await frisby
+      .post(`${url}/users/`,
+        {
+          name: 'Erick Jacquin',
+          email: 'erickjaquin',
+          password: '12345678',
+        })
+      .expect('status', 400)
+      .then((response) => {
+        const { body } = response;
+        const result = JSON.parse(body);
+        expect(result.message).toBe('Invalid entries. Try again.');
+      });
+  });
 
   it('Será validado que o campo "senha" é obrigatório', async () => {
     await frisby
@@ -89,30 +89,30 @@ describe('1 - Crie um endpoint para o cadastro de usuários', () => {
       });
   });
 
-  // it('Será validado que o campo "email" é único', async () => {
-  //   await frisby
-  //     .post(`${url}/users/`,
-  //       {
-  //         name: 'Erick Jacquin',
-  //         email: 'erickjaquin@gmail.com',
-  //         password: '12345678',
-  //       })
-  //     .expect('status', 201);
+  it('Será validado que o campo "email" é único', async () => {
+    await frisby
+      .post(`${url}/users/`,
+        {
+          name: 'Erick Jacquin',
+          email: 'erickjaquin@gmail.com',
+          password: '12345678',
+        })
+      .expect('status', 201);
 
-  //   await frisby
-  //     .post(`${url}/users/`,
-  //       {
-  //         name: 'Erick Jacquin',
-  //         email: 'erickjaquin@gmail.com',
-  //         password: '12345678',
-  //       })
-  //     .expect('status', 409)
-  //     .then((response) => {
-  //       const { body } = response;
-  //       const result = JSON.parse(body);
-  //       expect(result.message).toBe('Email already registered');
-  //     });
-  // });
+    await frisby
+      .post(`${url}/users/`,
+        {
+          name: 'Erick Jacquin',
+          email: 'erickjaquin@gmail.com',
+          password: '12345678',
+        })
+      .expect('status', 409)
+      .then((response) => {
+        const { body } = response;
+        const result = JSON.parse(body);
+        expect(result.message).toBe('Email already registered');
+      });
+  });
 
   it('Será validado que é possível cadastrar usuário com sucesso', async () => {
     await frisby

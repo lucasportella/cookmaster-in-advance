@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const usersRouter = require('./routes/usersRoute');
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -10,5 +12,6 @@ app.get('/', (request, response) => {
 });
 // Não remover esse end-point, ele é necessário para o avaliador
 
+app.use('/users', usersRouter);
 
 module.exports = app;

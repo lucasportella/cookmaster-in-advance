@@ -1,3 +1,4 @@
+const connect = require('mongodb');
 const connection = require('./connection');
 
 const createUser = async (userData) => {
@@ -13,7 +14,14 @@ const findEmail = async (email) => {
     return result;
 };
 
+const findUser = async (user) => {
+    const db = await connection();
+    const result = await db.collection('users').findOne({ user });
+    return result;
+};
+
 module.exports = {
     createUser,
     findEmail,
+    findUser,
 };

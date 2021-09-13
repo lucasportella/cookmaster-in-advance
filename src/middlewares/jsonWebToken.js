@@ -9,8 +9,8 @@ const generateJwtToken = async (req, res, next) => {
         algorithm: 'HS256',
     };
     const token = jwt.sign({ email, password }, secret, jwtConfig);
-    
-    req.token = token;
+
+    req.token = { token };
 
     next();
 };

@@ -9,7 +9,7 @@ const validateJWT = async (req, res, next) => {
 try {
     const token = req.headers.authorization;
     if (!token) {
-        return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'jwt malformed' });
+        return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'missing auth token' });
     }
     
     const decoded = jwt.verify(token, secret);

@@ -13,4 +13,6 @@ router.get('/:id', controllersRecipes.getRecipeById);
 
 router.put('/:id', middlewares.validateJWT, controllersRecipes.editRecipe);
 
+router.delete('/:id', middlewares.validateJWT, controllersRecipes.deleteRecipe);
+
 module.exports = router;

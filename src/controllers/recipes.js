@@ -16,7 +16,17 @@ const getAllRecipes = async (req, res) => {
     return res.status(StatusCodes.OK).json(result);
 };
 
+const getRecipeById = async (req, res) => {
+    const { id } = req.params;
+    const result = await servicesRecipes.getRecipeById(id);
+    if (result.errorType === 'not_found') {
+        return res.status(StatusCodes.NOT_FOUND).json(result.error);
+    }
+    return res.status(StatusCodes.OK).json(result);
+};
+
 module.exports = {
     createRecipe,
     getAllRecipes,
+    getRecipeById,
 };

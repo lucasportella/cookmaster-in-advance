@@ -15,7 +15,22 @@ const getAllRecipes = async () => {
     return result;
 };
 
+const getRecipeById = async (id) => {
+    const errorObject = { errorType: 'not_found', error: { message: 'recipe not found' } };
+    
+    if (id.length !== 24) {
+        return errorObject;
+    }
+    const result = await modelsRecipes.getRecipeById(id);
+
+    if (!result) {
+        return errorObject;
+    }
+    return result;
+};
+
 module.exports = {
     createRecipe,
     getAllRecipes,
+    getRecipeById,
 };

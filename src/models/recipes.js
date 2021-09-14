@@ -16,7 +16,8 @@ const getAllRecipes = async () => {
 
 const getRecipeById = async (id) => {
     const db = await connection();
-    const result = await db.collection('recipes').find(ObjectId(id));
+    const result = await db.collection('recipes').findOne(ObjectId(id));
+    console.log(result);
     return result;
 };
 

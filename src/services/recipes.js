@@ -29,8 +29,14 @@ const getRecipeById = async (id) => {
     return result;
 };
 
+const editRecipe = async (payload, id) => {
+    const result = await modelsRecipes.editRecipe(payload, id);
+    return result;
+};
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipeById,
+    editRecipe,
 };

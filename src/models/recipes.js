@@ -17,7 +17,13 @@ const getAllRecipes = async () => {
 const getRecipeById = async (id) => {
     const db = await connection();
     const result = await db.collection('recipes').findOne(ObjectId(id));
-    console.log(result);
+    return result;
+};
+
+const editRecipe = async (payload, id) => {
+    const db = await connection();
+    await db.collection('recipes').updateOne({ _id: ObjectId(id) }, { $set: { ...payload } });
+    const result = await getRecipeById(id);
     return result;
 };
 
@@ -25,4 +31,5 @@ module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipeById,
+    editRecipe,
 };

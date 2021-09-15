@@ -22,6 +22,4 @@ try {
 }
 };
 
-module.exports = {
-    validateJWT,
-};
+module.exports = validateJWT;

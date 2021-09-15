@@ -33,10 +33,15 @@ const deleteRecipe = async (id) => {
     return result.deletedCount;
 };
 
+const addImageToRecipe = async () => {
+    
+};
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipeById,
     editRecipe,
     deleteRecipe,
+    addImageToRecipe,
 };

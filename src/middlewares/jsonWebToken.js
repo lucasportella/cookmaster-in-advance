@@ -15,6 +15,4 @@ const generateJwtToken = async (req, res, next) => {
     next();
 };
 
-module.exports = {
-    generateJwtToken,
-};
+module.exports = generateJwtToken;

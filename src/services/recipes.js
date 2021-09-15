@@ -39,8 +39,15 @@ const deleteRecipe = async (id) => {
     return result;
 };
 
-const addImageToRecipe = async () => {
+const addImageToRecipe = async (filename) => {
+    const result = await modelsRecipes.addImageToRecipe(filename);
     
+    const id = filename.slice(0, 24);
+    if (result === 1) {
+        const recipeWithImage = await getRecipeById(id);
+        return recipeWithImage;
+    }
+    return { errorType: 'no change on database', error: { message: 'unable to update recipe' } };
 };
 
 module.exports = {

@@ -16,6 +16,9 @@ router.put('/:id', middlewares.validateJWT, controllersRecipes.editRecipe);
 
 router.delete('/:id', middlewares.validateJWT, controllersRecipes.deleteRecipe);
 
-router.put('/:id/image', middlewares.uploadImage, controllersRecipes.addImageToRecipe);
+router.put('/:id/image',
+middlewares.validateJWT,
+middlewares.uploadImage,
+controllersRecipes.addImageToRecipe);
 
 module.exports = router;

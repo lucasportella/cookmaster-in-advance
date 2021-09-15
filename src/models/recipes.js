@@ -33,8 +33,13 @@ const deleteRecipe = async (id) => {
     return result.deletedCount;
 };
 
-const addImageToRecipe = async () => {
-    
+const addImageToRecipe = async (filename) => {
+    const id = filename.slice(0, 24);
+    const filePath = `localhost:3000/src/uploads/${filename}`;
+    const db = await connection();
+    const result = await db.collection('recipes')
+    .updateOne({ _id: ObjectId(id) }, { $set: { image: filePath } });
+    return result.result.nModified;
 };
 
 module.exports = {

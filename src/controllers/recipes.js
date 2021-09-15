@@ -40,7 +40,12 @@ const deleteRecipe = async (req, res) => {
 };
 
 const addImageToRecipe = async (req, res) => {
-    
+    const { filename } = req.file;
+    const result = await servicesRecipes.addImageToRecipe(filename);
+    if (result.errorType === 'no change on database') { 
+        return res.status(StatusCodes.BAD_REQUEST).json(result.error); 
+}
+    return res.status(StatusCodes.OK).json(result);
 };
 
 module.exports = {

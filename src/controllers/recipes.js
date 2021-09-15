@@ -39,10 +39,15 @@ const deleteRecipe = async (req, res) => {
     }
 };
 
+const addImageToRecipe = async (req, res) => {
+    
+};
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipeById,
     editRecipe,
     deleteRecipe,
+    addImageToRecipe,
 };

@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const generateJwtToken = async (req, res, next) => {
     const { email, password } = req.body;
     const secret = 'mysecretexample';
-    
     const jwtConfig = {
         expiresIn: '7d',
         algorithm: 'HS256',

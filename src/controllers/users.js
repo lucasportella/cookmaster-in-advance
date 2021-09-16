@@ -16,6 +16,14 @@ const createUser = async (req, res) => {
     return res.status(StatusCodes.CREATED).json(result);
 };
 
+const createAdmin = async (req, res) => {
+    const { name, email, password } = req.body;
+    const adminData = { name, email, password };
+    const result = await servicesUsers.createAdmin(adminData);
+    return res.status(StatusCodes.CREATED).json(result);
+};
+
 module.exports = {
     createUser,
+    createAdmin,
 };

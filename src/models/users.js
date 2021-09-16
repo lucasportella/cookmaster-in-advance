@@ -19,8 +19,16 @@ const findUser = async (user) => {
     return result;
 };
 
+const createAdmin = async (adminData) => {
+    const db = await connection();
+    const result = await db.collection('users').insertOne({ ...adminData, role: 'admin' });
+    const { name, email, role, _id } = result.ops[0];
+    return { user: { name, email, role, _id } };
+};
+
 module.exports = {
     createUser,
     findEmail,
     findUser,
+    createAdmin,
 };

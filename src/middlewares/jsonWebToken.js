@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 const generateJwtToken = async (req, res, next) => {
-    
     const { email, name } = req.body;
     const secret = 'mysecretexample';
     const jwtConfig = {

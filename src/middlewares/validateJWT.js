@@ -14,8 +14,9 @@ try {
     
     const decoded = jwt.verify(token, secret);
     const user = await modelsUsers.findEmail(decoded.email);
-    const { _id } = user;
+    const { _id, role } = user;
     req.user = _id;
+    req.role = role;
     next();
 } catch (err) {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'jwt malformed' });

@@ -14,7 +14,11 @@ const createUser = async (userData) => {
 };
 
 const createAdmin = async (adminData) => {
-    const { name, email, password } = adminData;
+    const { name, email, password, role } = adminData;
+    if (role !== 'admin') {
+        return { errorType: 'forbidden',
+        error: { message: 'Only admins can register new admins' } };
+    }
     if ([name, email, password].includes(undefined) || !email.match(/\w+@\w+.com/)) {
         return { errorType: 'bad_request', error: { message: 'Invalid entries. Try again.' } };
     }

@@ -18,8 +18,12 @@ const createUser = async (req, res) => {
 
 const createAdmin = async (req, res) => {
     const { name, email, password } = req.body;
-    const adminData = { name, email, password };
+    const { role } = req;
+    const adminData = { name, email, password, role };
     const result = await servicesUsers.createAdmin(adminData);
+    if (result.errorType === 'forbidden') {
+        return res.status(StatusCodes.FORBIDDEN).json(result.error);
+    }
     return res.status(StatusCodes.CREATED).json(result);
 };
 

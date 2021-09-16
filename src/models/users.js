@@ -21,7 +21,7 @@ const findUser = async (user) => {
 
 const createAdmin = async (adminData) => {
     const db = await connection();
-    const result = await db.collection('users').insertOne({ ...adminData, role: 'admin' });
+    const result = await db.collection('users').insertOne({ ...adminData });
     const { name, email, role, _id } = result.ops[0];
     return { user: { name, email, role, _id } };
 };
